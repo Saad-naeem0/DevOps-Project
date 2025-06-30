@@ -30,7 +30,7 @@ ${ip} ansible_user=azureuser ansible_ssh_private_key_file=~/.ssh/id_rsa
     stage('Run Ansible Playbook') {
       steps {
         sshagent (credentials: ['ansible-key']) {
-          sh "ansible-playbook -i ${env.INVENTORY} ansible/install_web.yml"
+          sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i inventory.ini ansible/install_web.yml'
         }
       }
     }
