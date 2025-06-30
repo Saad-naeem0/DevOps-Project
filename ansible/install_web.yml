@@ -1,0 +1,15 @@
+- name: Setup Apache and deploy app
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install Apache
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+    - name: Copy HTML to web server
+      copy:
+        src: ../app/index.html
+        dest: /var/www/html/index.html
+
