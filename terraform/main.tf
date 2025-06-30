@@ -51,6 +51,8 @@ resource "azurerm_linux_virtual_machine" "vm" {
   size                = "Standard_B1s"
   admin_username      = "azureuser"
   disable_password_authentication = true
+  custom_data = filebase64("${path.module}/cloud-init.yml")
+
 
   admin_ssh_key {
     username   = "azureuser"
